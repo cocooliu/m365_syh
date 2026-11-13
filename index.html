@@ -2,470 +2,1038 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>尚蘊醫院｜Microsoft 365 分階段導入規劃</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>尚蘊醫院｜Microsoft 365 導入規劃與費用試算</title>
+
 <style>
-:root{--navy:#14324c;--blue:#176b97;--light:#eef5fa;
---green:#17755b;--line:#d9e3eb;--muted:#526575}
-*{box-sizing:border-box}
-body{margin:0;background:#f3f6f9;color:#213547;
-font:15px/1.7 "Microsoft JhengHei",Arial,sans-serif}
-main{max-width:1180px;margin:auto;padding:28px}
-header{background:linear-gradient(120deg,var(--navy),var(--blue));
-color:white;padding:36px;border-radius:18px}
-h1{margin:8px 0;font-size:30px}
-h2{color:var(--navy);margin:0 0 16px}
-h3{margin:0 0 10px}
-section{background:white;margin-top:22px;padding:26px;
-border:1px solid var(--line);border-radius:14px}
-small,.muted{color:var(--muted)}
-header small{color:#dbeaf4}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{padding:20px;border:1px solid var(--line);border-radius:12px}
-.card.recommend{border:2px solid var(--green)}
-.badge{display:inline-block;background:var(--light);color:var(--blue);
-padding:3px 10px;border-radius:20px;font-size:12px}
-.price{font-size:26px;font-weight:bold;color:var(--blue)}
-.note{padding:14px 18px;background:#fff8e6;
-border-left:4px solid #dca640;margin:14px 0}
-.info{padding:14px 18px;background:var(--light);
-border-left:4px solid var(--blue);margin:14px 0}
-.scroll{overflow:auto}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{padding:12px;border:1px solid var(--line);
-text-align:left;vertical-align:top}
-th{background:var(--light);white-space:nowrap}
-ul{padding-left:22px}
-input{padding:8px;border:1px solid #bacbd8;border-radius:6px;
-width:130px;font:inherit}
-label{display:inline-block;margin:8px 20px 8px 0}
-button{border:0;border-radius:8px;padding:10px 18px;
-background:var(--blue);color:white;cursor:pointer;font:inherit}
-.total{font-weight:bold;background:#f1faf6}
-footer{padding:20px;color:var(--muted);font-size:12px}
-@media(max-width:800px){
-main{padding:12px}.grid{grid-template-columns:1fr}
-header,section{padding:20px}h1{font-size:24px}
+:root {
+  --navy:#17364f;
+  --blue:#216b94;
+  --green:#17836c;
+  --bg:#f3f6fa;
+  --line:#dce5ed;
+  --muted:#657789;
+  --light:#edf5fb;
 }
-@media print{
-body{background:white}main{max-width:none;padding:0}
-section,.card{break-inside:avoid}
-header{background:white;color:var(--navy);border:2px solid var(--navy)}
-header small{color:var(--muted)}
-button{display:none}
-input{border:0;background:transparent}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:#24394c;
+  font:15px/1.75 "Microsoft JhengHei",Arial,sans-serif;
+}
+
+main {
+  max-width:1280px;
+  margin:auto;
+  padding:28px;
+}
+
+header {
+  padding:36px;
+  color:white;
+  background:linear-gradient(120deg,var(--navy),var(--blue));
+  border-radius:20px;
+}
+
+header .eyebrow {
+  color:#c8e3f2;
+  font-size:13px;
+  letter-spacing:2px;
+}
+
+h1 { margin:10px 0; font-size:31px; }
+h2 { margin:0 0 18px; color:var(--navy); font-size:24px; }
+h3 { margin:12px 0; }
+p { margin:10px 0; }
+
+section {
+  margin-top:24px;
+  padding:28px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card {
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:24px;
+}
+
+.card.recommended {
+  border:2px solid var(--green);
+  background:#f8fcfa;
+}
+
+.badge {
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:20px;
+  font-size:12px;
+  background:var(--light);
+  color:var(--blue);
+}
+
+.price {
+  color:var(--blue);
+  font-size:31px;
+  font-weight:bold;
+  margin:16px 0 2px;
+}
+
+.muted {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.note,.info {
+  padding:16px 18px;
+  margin:18px 0;
+  border-radius:6px;
+}
+
+.note {
+  background:#fff8e8;
+  border-left:4px solid #d6a540;
+}
+
+.info {
+  background:var(--light);
+  border-left:4px solid var(--blue);
+}
+
+.scroll { overflow-x:auto; }
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+
+th,td {
+  padding:13px;
+  border:1px solid var(--line);
+  text-align:left;
+  vertical-align:top;
+}
+
+th {
+  background:var(--light);
+  color:var(--navy);
+}
+
+.money {
+  white-space:nowrap;
+  font-weight:bold;
+}
+
+input,select {
+  width:100%;
+  border:1px solid #bdccd8;
+  border-radius:7px;
+  padding:9px 10px;
+  color:#24394c;
+  background:white;
+  font:inherit;
+}
+
+input[type=number] { min-width:95px; }
+
+button {
+  padding:10px 16px;
+  border:0;
+  border-radius:8px;
+  background:var(--blue);
+  color:white;
+  cursor:pointer;
+  font:inherit;
+}
+
+button.secondary { background:#e9f0f5; color:var(--navy); }
+button.danger { background:#fbecec; color:#a63c3c; }
+
+.toolbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.summary {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:20px;
+}
+
+.summary-box {
+  background:#f4f8fb;
+  padding:22px;
+  border-radius:12px;
+}
+
+.summary-box.total {
+  background:var(--navy);
+  color:white;
+}
+
+.summary-box .label { font-size:13px; }
+.summary-box .value {
+  font-size:27px;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+.summary-box.total .muted { color:#cfdee8; }
+
+.fee-input { max-width:170px; }
+
+ul { margin:10px 0; padding-left:22px; }
+li { margin:5px 0; }
+
+footer {
+  text-align:center;
+  padding:24px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.highlight { background:#f0faf5; }
+.warning { color:#ad5820; font-size:13px; }
+
+@media(max-width:850px) {
+  main { padding:12px; }
+  header,section { padding:22px; }
+  .grid,.summary { grid-template-columns:1fr; }
+  h1 { font-size:25px; }
+}
+
+@media print {
+  body { background:white; }
+  main { max-width:none; padding:0; }
+  header {
+    background:white;
+    color:var(--navy);
+    border:2px solid var(--navy);
+  }
+  header .eyebrow { color:var(--muted); }
+  button,.no-print { display:none !important; }
+  section,.card,.summary-box { break-inside:avoid; }
+  section { padding:20px; }
+  input,select {
+    border:0;
+    background:transparent;
+    padding:0;
+    color:inherit;
+  }
+  .scroll { overflow:visible; }
+  th,td { padding:9px; }
+  .summary-box.total { background:#edf3f7; color:var(--navy); }
+  .summary-box.total .muted { color:var(--muted); }
 }
 </style>
 </head>
+
 <body>
 <main>
+
 <header>
-<small>專案提案草案｜價格查核基準：2026-11-13</small>
-<h1>尚蘊醫院 Microsoft 365 導入規劃</h1>
-<p>身分與郵件 → 裝置管理 → 端點偵測與回應</p>
-<p>以 Microsoft 365 Business 系列為主，
-依專案成熟度分階段建置，授權可一次採購、功能逐步啟用。</p>
+  <div class="eyebrow">MICROSOFT 365 IMPLEMENTATION PLAN</div>
+  <h1>尚蘊醫院 Microsoft 365 導入規劃</h1>
+  <p>身分與郵件服務 → 裝置管理 → 商務端點防護</p>
+  <p>依角色配置授權、依成熟度分階段導入，建立可調整的年度預算。</p>
+  <p style="font-size:13px;color:#d6e7f1">
+    金額基準：使用者提供之折扣後含稅年價｜幣別：新台幣
+  </p>
 </header>
 
 <section>
-<h2>01｜規劃假設與採購原則</h2>
-<ul>
-<li>採購市場暫定台灣，幣別 TWD；Business 套裝採含 Teams 版本。</li>
-<li>官方價格均以每人每月、年約年付、未稅表示；
-年度授權費＝人數 × 月單價 × 12。</li>
-<li>Business 方案以最多 300 位使用者的適用範圍規劃；
-實際組合與購買上限須於採購前確認。超出範圍另評估企業版。[S1]</li>
-<li>尚未取得實際人數、裝置數、信箱容量及既有系統，
-以下時程、驗收門檻與工程人日均為規劃建議，不是原廠承諾。</li>
-<li>本案以行政及一般辦公端點為優先範圍。
-HIS、PACS、醫療儀器、伺服器及特殊共用工作站須另外盤點及審核。</li>
-<li>先確認個資、資料落地、保存期限與院內政策；
-購買授權或完成部署不代表自動符合醫療相關法規。</li>
-</ul>
-<div class="note">
-<strong>避免重複採購：</strong>
-升級 Business Premium 是取代原有 Business Basic／Standard
-席次，不是把兩套完整授權疊加。
-Premium 已包含的 Entra ID P1、Intune 及 Defender for Business，
-不應再對同一使用者重複購買同等單品。[S1][S2][S4]
-</div>
+  <h2>方案總覽</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <span class="badge">基礎包</span>
+      <h3>Entra 基礎身分＋Exchange</h3>
+      <div class="price">NT\$2,552</div>
+      <div class="muted">每人／年，折扣後含稅</div>
+
+      <p><strong>建議授權：Business Basic</strong></p>
+      <ul>
+        <li>建立雲端帳號、群組與管理權限。</li>
+        <li>規劃基礎 MFA 與安全預設值。</li>
+        <li>導入 Exchange Online 郵件與行事曆。</li>
+        <li>使用網頁版與行動版 Office。</li>
+      </ul>
+
+      <div class="info">
+        需要完整桌面 Office，可改採 Business Standard：
+        <strong>NT\$5,103／人／年，含稅。</strong>
+      </div>
+    </div>
+
+    <div class="card recommended">
+      <span class="badge">標準包｜建議配置</span>
+      <h3>基礎包＋Intune</h3>
+      <div class="price">NT\$7,995</div>
+      <div class="muted">每人／年，折扣後含稅</div>
+
+      <p><strong>建議授權：Business Premium</strong></p>
+      <ul>
+        <li>承接身分與郵件服務。</li>
+        <li>Entra ID P1 與條件式存取。</li>
+        <li>Intune 裝置及應用程式管理。</li>
+        <li>合規檢查、加密與更新政策。</li>
+        <li>包含完整桌面 Office。</li>
+      </ul>
+
+      <p class="muted">
+        授權已內含 Defender for Business；
+        可將深化部署安排於中階包。
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">中階包</span>
+      <h3>標準包＋商務端點防護</h3>
+      <div class="price">NT\$7,995</div>
+      <div class="muted">每人／年，折扣後含稅</div>
+
+      <p><strong>建議授權：Business Premium</strong></p>
+      <ul>
+        <li>啟用內含 Defender for Business。</li>
+        <li>端點防毒、攻擊面縮減與防火牆政策。</li>
+        <li>EDR 偵測、調查與事件回應。</li>
+        <li>弱點改善與告警處理流程。</li>
+      </ul>
+
+      <div class="info">
+        與標準包使用相同授權，無需重複加購
+        Defender for Business；差異在新增的導入工項。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <strong>方案名稱與授權名稱不同：</strong>
+    專案「標準包」不等於 Business Standard。
+    本版「中階包」採 Defender for Business，
+    不代表取得完整 MDE Plan 2 授權。
+    若指定 MDE P2，須另外確認適用 SKU 與報價，本試算不包含。
+  </div>
 </section>
 
 <section>
-<h2>02｜三階段方案總覽</h2>
-<div class="grid">
-<div class="card">
-<span class="badge">基礎包｜身分＋郵件</span>
-<h3>建立雲端帳號與信箱</h3>
-<div class="price">NT\$225／人／月</div>
-<p><strong>建議：Business Basic</strong></p>
-<ul>
-<li>Entra 基礎身分功能、帳號與群組管理。</li>
-<li>Exchange Online 郵件服務。</li>
-<li>基礎 MFA 與安全預設值規劃。</li>
-<li>網頁／行動版 Office；不含完整桌面 Office 授權。[S1]</li>
-</ul>
-<p class="muted">需要桌面 Office：改用 Business Standard，
-NT\$450／人／月。[S1]</p>
-</div>
-<div class="card recommend">
-<span class="badge">標準包｜＋Intune</span>
-<h3>建立受控裝置與存取政策</h3>
-<div class="price">NT\$705／人／月</div>
-<p><strong>建議：Business Premium</strong></p>
-<ul>
-<li>承接基礎包，升級為 Entra ID P1。</li>
-<li>Intune Plan 1 裝置／應用程式管理。</li>
-<li>條件式存取與裝置合規政策。</li>
-<li>包含桌面 Office。[S1][S2]</li>
-</ul>
-<p class="muted">授權已含 Defender for Business，
-端點防護深化工項可安排於下一階段。[S4]</p>
-</div>
-<div class="card">
-<span class="badge">中階包｜＋端點防護</span>
-<h3>偵測、調查與應變</h3>
-<div class="price">NT\$705 起／人／月</div>
-<p><strong>A：Premium＋Defender for Business</strong></p>
-<p>使用內含端點防護與 EDR 能力；
-相同人數下授權費不增加，但新增導入服務費。[S4]</p>
-<p><strong>B：指定 MDE Plan 2</strong></p>
-<p>Premium＋合格 MDE P2 採購組合，增額待報價。
-需確認租戶體驗切換與所有受保護使用者的授權覆蓋。[S4]</p>
-</div>
-</div>
-<div class="note">
-<strong>名稱必須精確：</strong>
-Defender for Business 與 MDE P2 不是同一 SKU。
-MDE P1 是基礎端點防護方案，不應當作完整 MDE P2
-的 EDR／自動調查回應替代品。[S4][S5]
-</div>
+  <h2>成本試算</h2>
+
+  <p>
+    可依行政、醫護、資訊或其他角色，分別輸入人數與授權組合。
+    「導入階段」用於規劃服務範圍，不會自動增加或重複購買授權。
+  </p>
+
+  <div class="toolbar">
+    <div class="muted">
+      預設角色僅為操作示例，請改為醫院實際人數。
+    </div>
+    <div>
+      <button type="button" onclick="addRole()">＋新增角色</button>
+      <button type="button" class="secondary" onclick="window.print()">
+        列印／另存 PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:150px">角色／部門</th>
+          <th style="min-width:95px">人數</th>
+          <th style="min-width:300px">授權組合</th>
+          <th style="min-width:150px">導入階段</th>
+          <th>每人年費<br>含稅</th>
+          <th>年度小計<br>含稅</th>
+          <th class="no-print">操作</th>
+        </tr>
+      </thead>
+      <tbody id="roleRows"></tbody>
+    </table>
+  </div>
+
+  <div id="validation" class="warning" aria-live="polite"></div>
+
+  <h3>導入服務費設定</h3>
+  <p class="muted">
+    請於「分階段工項」輸入各阶段的服務費總額。
+    金額均以含稅輸入；空白代表待報價，不視為已確認免費。
+  </p>
+  <div id="serviceStatus" class="info"></div>
+
+  <div class="summary" aria-live="polite">
+    <div class="summary-box">
+      <div class="label">年度授權總費用｜含稅</div>
+      <div class="value" id="licenseTotal">NT\$0</div>
+      <div class="muted" id="headcount">使用者總數：0 人</div>
+    </div>
+
+    <div class="summary-box">
+      <div class="label">已填導入服務費｜含稅</div>
+      <div class="value" id="serviceTotal">NT\$0</div>
+      <div class="muted">各階段新增工項費用加總，不是累計重複計價。</div>
+    </div>
+
+    <div class="summary-box total">
+      <div class="label" id="grandLabel">首年已知預算小計｜含稅</div>
+      <div class="value" id="grandTotal">NT\$0</div>
+      <div class="muted" id="grandNote">尚有服務費待報價。</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>計算方式：</strong>
+    年度授權＝各角色人數 × 所選組合的折扣後含稅年價。
+    首年預算＝年度授權＋導入服務費。
+    不含後續維運、額外工具或其他未列採購項目。
+  </div>
 </section>
 
 <section>
-<h2>03｜授權內容與單品配置</h2>
-<div class="scroll">
-<table>
-<thead><tr>
-<th>產品／授權</th><th>主要配置用途</th>
-<th>月單價未稅</th><th>年單價未稅</th><th>使用建議</th>
-</tr></thead>
-<tbody>
-<tr><td>Business Basic</td>
-<td>基礎身分＋Exchange＋網頁／行動 Office</td>
-<td>NT\$225</td><td>NT\$2,700</td>
-<td>基礎包主方案。[S1]</td></tr>
-<tr><td>Business Standard</td>
-<td>基礎身分＋Exchange＋桌面 Office</td>
-<td>NT\$450</td><td>NT\$5,400</td>
-<td>只增加桌面 Office；不是 Intune 導入方案。[S1]</td></tr>
-<tr><td>Business Premium</td>
-<td>桌面 Office＋Exchange＋Entra ID P1＋Intune
-＋Defender for Business</td>
-<td>NT\$705</td><td>NT\$8,460</td>
-<td>標準包及中階 A 的主方案。[S1][S2][S4]</td></tr>
-<tr><td>Exchange Online Plan 1</td>
-<td>單購郵件服務，不提供完整 Office 套裝</td>
-<td>NT\$130</td><td>NT\$1,560</td>
-<td>郵件限定型替代方案；
-已配置 Business 套裝者不重複購買。[S3]</td></tr>
-<tr><td>Entra ID P1</td>
-<td>條件式存取等進階身分能力</td>
-<td>NT\$225</td><td>NT\$2,700</td>
-<td>Basic／Standard 使用者需要 P1 時加購；
-Premium 已包含。[S2]</td></tr>
-<tr><td>Intune Plan 1 單購</td>
-<td>裝置及應用程式管理</td>
-<td>台灣官方價待確認</td><td>月報價 × 12</td>
-<td>適用 Basic／Standard 的單品組合比較；
-Premium 不重複採購。</td></tr>
-<tr><td>Defender for Business 單購</td>
-<td>商務端點防護與 EDR</td>
-<td>台灣官方價待確認</td><td>月報價 × 12</td>
-<td>可用於未採 Premium 的授權比較；
-Premium 已包含。[S4]</td></tr>
-<tr><td>MDE Plan 2 單購／合格增購</td>
-<td>指定 MDE P2 功能與使用體驗</td>
-<td>台灣官方價待確認</td><td>月報價 × 12</td>
-<td>不得假設存在適用所有 Business 租戶的固定升級差價；
-須確認 SKU、先決條件及覆蓋範圍。[S4][S5]</td></tr>
-<tr><td>伺服器／特殊共用裝置</td>
-<td>另外確認適用的裝置或伺服器授權</td>
-<td>另案報價</td><td>另案報價</td>
-<td>不可直接以一般使用者端點授權涵蓋所有伺服器。[S5]</td></tr>
-</tbody>
-</table>
-</div>
+  <h2>套裝與單品的成本比較</h2>
+
+  <p>下列金額均為每人每年的折扣後含稅價，直接依提供報價加總。</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>授權配置</th>
+          <th>每人年費｜含稅</th>
+          <th>主要適用內容</th>
+          <th>配置建議</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Business Basic</td>
+          <td class="money">NT\$2,552</td>
+          <td>基礎身分、郵件、網頁／行動 Office。</td>
+          <td>適合以郵件及網頁作業為主的基礎包。</td>
+        </tr>
+        <tr>
+          <td>Business Standard</td>
+          <td class="money">NT\$5,103</td>
+          <td>基礎包能力＋完整桌面 Office。</td>
+          <td>不因名稱為 Standard 就具有完整 Intune 導入能力。</td>
+        </tr>
+        <tr>
+          <td>Basic＋Entra ID P1</td>
+          <td class="money">NT\$5,104</td>
+          <td>基礎包＋P1 身分與條件式存取。</td>
+          <td>需要進階身分能力，但尚不需完整裝置管理時評估。</td>
+        </tr>
+        <tr>
+          <td>Basic＋Entra ID P1＋Intune Plan 1</td>
+          <td class="money">NT\$7,996</td>
+          <td>網頁 Office、郵件、P1、裝置管理。</td>
+          <td>比 Premium 多 NT\$1；本報價下優先選 Premium。</td>
+        </tr>
+        <tr>
+          <td>Standard＋Entra ID P1＋Intune Plan 1</td>
+          <td class="money">NT\$10,547</td>
+          <td>桌面 Office、郵件、P1、裝置管理。</td>
+          <td>比 Premium 多 NT\$2,552；優先比較升級 Premium。</td>
+        </tr>
+        <tr>
+          <td>Basic＋Defender for Business</td>
+          <td class="money">NT\$3,646</td>
+          <td>基礎包＋商務端點防護。</td>
+          <td>可用於只加端點防護、不做完整標準包的角色。</td>
+        </tr>
+        <tr>
+          <td>Basic＋P1＋Intune＋Defender for Business</td>
+          <td class="money">NT\$9,090</td>
+          <td>網頁 Office、郵件、進階身分、裝置管理與端點防護。</td>
+          <td>比 Premium 多 NT\$1,095；優先選 Premium。</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Business Premium</strong></td>
+          <td class="money">NT\$7,995</td>
+          <td>桌面 Office、郵件、P1、Intune、Defender for Business。</td>
+          <td><strong>建議作為標準包與中階包主配置。</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info">
+    <strong>採購原則：</strong>
+    Premium 已內含 P1、Intune 及 Defender for Business，
+    不再對相同使用者重複加購。
+    Basic／Standard 升級至 Premium 時，以替換席次規劃，
+    不把兩套完整套裝重複疊加。
+  </div>
 </section>
 
 <section>
-<h2>04｜套裝與單品的成本比較</h2>
-<p>以下 I＝Intune Plan 1 的台灣未稅月報價；
-D＝適用於本租戶之 MDE P2 採購組合的未稅月增額。</p>
-<div class="scroll">
-<table>
-<tr><th>配置</th><th>每人每月</th><th>規劃判斷</th></tr>
-<tr><td>Basic＋Entra ID P1</td><td>NT\$450</td>
-<td>具 P1 身分能力，但尚未包含 Intune。</td></tr>
-<tr><td>Basic＋Intune</td><td>NT\$225＋I</td>
-<td>若工項包括 P1 條件式存取，還需補足 P1 授權。</td></tr>
-<tr><td>Basic＋Entra ID P1＋Intune</td><td>NT\$450＋I</td>
-<td>若 I ≥ NT\$255，成本即達 Premium；
-Premium 同時增加桌面 Office 及內含安全功能。</td></tr>
-<tr><td>Standard＋Entra ID P1＋Intune</td><td>NT\$675＋I</td>
-<td>若 I ≥ NT\$30，成本即達 Premium；
-通常優先比較升級 Premium。</td></tr>
-<tr><td>Premium</td><td>NT\$705</td>
-<td>建議標準包／中階商務端點防護版主配置。</td></tr>
-<tr><td>Premium＋適用 MDE P2 採購組合</td><td>NT\$705＋D</td>
-<td>只在確實要求 MDE P2 時納入；
-不得將 Defender for Business 直接改名為 MDE P2。</td></tr>
-</table>
-</div>
-<p class="muted">以上門檻是依公開套裝價格所作的算術比較，
-並非單品官方報價；實際仍應比較當期採購條件。</p>
+  <h2>分階段工項</h2>
+
+  <p>
+    工項依服務功能拆解。右側為該階段的
+    <strong>新增服務費總額</strong>，以含稅報價輸入，
+    將自動帶入上方成本試算。
+  </p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:13%">導入階段</th>
+          <th style="width:23%">主要功能服務</th>
+          <th>工項細節</th>
+          <th style="width:17%">總費用｜含稅</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>前置規劃</strong><br>所有包共用</td>
+          <td>環境盤點與導入設計</td>
+          <td>
+            <ul>
+              <li>盤點人員角色、帳號、網域、既有 AD 與郵件平台。</li>
+              <li>確認信箱容量、移轉範圍、端點系統與應用相依性。</li>
+              <li>規劃授權配置、管理權責與分批導入順序。</li>
+              <li>確認資料使用政策、變更窗口及回復方式。</li>
+            </ul>
+          </td>
+          <td>
+            <input class="fee-input service-fee" type="number"
+              min="0" step="1" placeholder="待報價"
+              data-name="前置規劃" aria-label="前置規劃含稅總費用">
+            <div class="muted">如已含於基礎包，填 0 避免重複。</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>基礎包</strong></td>
+          <td>
+            Entra 身分服務<br>
+            Exchange 郵件服務<br>
+            基礎管理與教育
+          </td>
+          <td>
+            <ul>
+              <li>租戶與自訂網域設定、帳號及群組建立、管理角色配置。</li>
+              <li>MFA、安全預設值與緊急存取帳號規劃；
+              需要條件式存取者另配 P1 或 Premium。</li>
+              <li>建立使用者信箱、共用信箱、郵件群組与委派權限。</li>
+              <li>設定 MX、Autodiscover、SPF、DKIM 及 DMARC。</li>
+              <li>依來源能力安排試移轉、批次郵件移轉與切換。</li>
+              <li>設定 Outlook／網頁郵件使用方式、
+              管理員操作與使用者教育。</li>
+              <li>既有 AD 同步與特殊郵件流程，依盤點納入或另列。</li>
+            </ul>
+          </td>
+          <td>
+            <input class="fee-input service-fee" type="number"
+              min="0" step="1" placeholder="待報價"
+              data-name="基礎包" aria-label="基礎包含稅總費用">
+            <div class="muted">僅計基礎包新增工項。</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>標準包</strong></td>
+          <td>
+            Intune 裝置管理<br>
+            應用程式管理<br>
+            條件式存取
+          </td>
+          <td>
+            <ul>
+              <li>建立 Intune 管理權限、裝置群組與註冊方式。</li>
+              <li>依院方需求區分個人配發、共用及 BYOD 管理模式。</li>
+              <li>設定裝置合規、密碼、螢幕鎖定與加密政策。</li>
+              <li>規劃復原金鑰保存、更新環及核准應用程式部署。</li>
+              <li>設定行動應用保護、企業資料存取與選擇性移除流程。</li>
+              <li>條件式存取先採僅報告模式觀察，再分批啟用。</li>
+              <li>建立離到職、裝置遺失、退場及政策例外處理流程。</li>
+              <li>Autopilot、憑證與網路設定如有需求，另確認範圍。</li>
+            </ul>
+          </td>
+          <td>
+            <input class="fee-input service-fee" type="number"
+              min="0" step="1" placeholder="待報價"
+              data-name="標準包" aria-label="標準包含稅總費用">
+            <div class="muted">不重複包含基礎包費用。</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>中階包</strong></td>
+          <td>
+            Defender for Business<br>
+            端點偵測與回應<br>
+            安全政策與事件管理
+          </td>
+          <td>
+            <ul>
+              <li>啟用 Defender for Business，規劃端點納管與分批部署。</li>
+              <li>評估既有防毒相容性與替換方式。</li>
+              <li>設定防毒、防火牆、雲端保護與防竄改政策。</li>
+              <li>攻擊面縮減政策先稽核，再依相容性逐步阻擋。</li>
+              <li>檢視端點健康與軟體弱點，安排修補優先順序。</li>
+              <li>設定告警通知、事件調查、裝置隔離與復原流程。</li>
+              <li>針對可能影響臨床作業的處置設置核准與例外機制。</li>
+              <li>進行核准的安全測試、事件處理演練與管理操作教育。</li>
+            </ul>
+          </td>
+          <td>
+            <input class="fee-input service-fee" type="number"
+              min="0" step="1" placeholder="待報價"
+              data-name="中階包" aria-label="中階包含稅總費用">
+            <div class="muted">不重複包含前兩階段費用。</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>交接與調校</strong></td>
+          <td>上線觀察與維運交接</td>
+          <td>
+            <ul>
+              <li>追蹤帳號、郵件、裝置與端點政策問題。</li>
+              <li>調整已核准例外及操作流程。</li>
+              <li>整理管理設定、維运 SOP 與責任分工。</li>
+              <li>安排管理員交接與後續維運需求確認。</li>
+            </ul>
+          </td>
+          <td>
+            <input class="fee-input service-fee" type="number"
+              min="0" step="1" placeholder="待報價"
+              data-name="交接與調校" aria-label="交接與調校含稅總費用">
+            <div class="muted">若已含於其他階段，填 0。</div>
+          </td>
+        </tr>
+
+        <tr class="highlight">
+          <td colspan="3"><strong>已填導入服務費總計｜含稅</strong></td>
+          <td class="money" id="workTotal">NT\$0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section>
-<h2>05｜分階段工項、時程與驗收</h2>
-<p class="muted">時程假設為約 100 人、行政端點優先、
-可分批切換且既有環境無重大障礙；各階段按順序承接。</p>
-<div class="scroll">
-<table>
-<tr><th>階段／建議期間</th><th>工項</th>
-<th>交付成果</th><th>建議驗收門檻</th></tr>
-<tr>
-<td>前置盤點<br>第 1–2 週<br>所有包必做</td>
-<td>帳號、網域、AD、郵件來源、信箱容量、
-裝置 OS、醫療系統相依性盤點；
-確認資料分類、變更窗口、權責與回復策略。</td>
-<td>現況盤點表、授權 BOM、架構圖、
-風險清單、移轉／回復計畫。</td>
-<td>所有納入範圍的帳號與裝置均完成分類；
-例外由院方簽核。</td>
-</tr>
-<tr>
-<td>基礎包<br>第 3–6 週</td>
-<td>租戶與網域設定、帳號／群組／角色配置、
-MFA 與緊急存取帳號設計；
-Exchange 信箱與權限、DNS、SPF／DKIM／DMARC；
-來源評估、試移轉、分批切換、使用者教育。
-AD 同步有需要時另納入工項。</td>
-<td>帳號與郵件設定文件、移轉報告、
-管理員 SOP、使用者教材。</td>
-<td>建議納入帳號 MFA 完成率 ≥95%；
-核准移轉範圍完成且異常均有處理紀錄；
-內外寄收、權限、行事曆抽測通過。</td>
-</tr>
-<tr>
-<td>標準包<br>第 7–10 週</td>
-<td>Intune 權責與註冊設計；
-裝置群組、合規政策、加密與復原金鑰流程；
-更新環、應用程式部署、BYOD 應用保護；
-條件式存取先以僅報告模式驗證再啟用。
-Autopilot、憑證、Wi-Fi／VPN 依需求另列。</td>
-<td>政策矩陣、裝置清冊、試點報告、
-註冊與退場 SOP、條件式存取例外清單。</td>
-<td>建議納入裝置註冊完成率 ≥95%；
-非合規裝置阻擋與資料移除測試通過；
-臨床相依應用無未解重大障礙。</td>
-</tr>
-<tr>
-<td>中階 A<br>第 11–14 週</td>
-<td>Defender for Business 上線；
-既有防毒相容性與退場評估、端點健康檢查；
-防毒、防火牆、攻擊面縮減先稽核後阻擋；
-弱點修補排序、告警通知、隔離授權與事件演練。</td>
-<td>端點覆蓋報告、政策例外表、
-弱點改善清單、事件應變 SOP、演練報告。</td>
-<td>建議纳入且相容的端點上線率 ≥95%；
-核准測試事件可產生告警；
-通知、調查、隔離核准及復原流程均完成演練。</td>
-</tr>
-<tr>
-<td>中階 B<br>中階 A 基礎上另排</td>
-<td>確認 MDE P2 授權與租戶體驗切換；
-依實際需求補充進階調查／獵捕、
-SOC 串接與功能驗證；不得假設只指派少量 P2
-席次即可建立獨立的 P2 使用體驗。[S4]</td>
-<td>P2 授權確認紀錄、切換計畫、
-需求對應功能驗收表。</td>
-<td>所有納入對象授權覆蓋確認完成；
-指定 P2 功能依驗收表測試通過。</td>
-</tr>
-<tr>
-<td>維運交接<br>末階段後 2 週觀察</td>
-<td>政策調校、例外追蹤、管理員訓練；
-訂定離到職、更新、權限檢視與事件通報流程。</td>
-<td>維運手冊、RACI、未結事項清單、
-後續維運服務建議。</td>
-<td>無未解重大上線事件；
-交付文件及責任分工由院方簽收。</td>
-</tr>
-</table>
-</div>
+  <h2>備註與規劃假設</h2>
+  <ul>
+    <li>
+      本文件使用報價表中的折扣後含稅年價，
+      不另套用折扣或重新乘上營業稅。
+      表內因四捨五入產生的差異，以提供之年單價為準。
+    </li>
+    <li>
+      授權費以完整一年估算；期中升級、增減席次、
+      合約起迄日及續約價格，須依實際採購條件確認。
+    </li>
+    <li>
+      導入階段與授權組合分開管理。
+      若選擇不符合導入需求的組合，試算會提示；
+      該提示不是完整的授權法律審查。
+    </li>
+    <li>
+      混合授權依實際使用及受益對象配置；
+      不得只為管理員購買 Premium，
+      就假設全部 Basic 使用者可使用 Premium 功能。
+    </li>
+    <li>
+      Business 系列本案以最多 300 位使用者為規劃範圍；
+      超出時另確認適用方案及購買限制。
+    </li>
+    <li>
+      醫療儀器、HIS、PACS、特殊共用工作站與 VDI／RDS，
+      須先確認系統相容性及適用授權，不直接套用一般端點政策。
+    </li>
+    <li>
+      本試算不提供伺服器價格，也不將其授權或導入費納入總額。
+    </li>
+    <li>
+      第三方備份、付費移轉工具、Windows 基礎授權、
+      24×7 SOC、SIEM、額外維運與客製串接未納入。
+    </li>
+    <li>
+      資料保存、資料落地、進階 DLP 與醫療個資政策須另外確認；
+      完成導入不代表自動取得法遵認證。
+    </li>
+    <li>
+      所有工項服務費均由報價人員自行輸入。
+      沒有導入的階段，請填 0；
+      尚未確認的階段請保留空白。
+    </li>
+  </ul>
 </section>
 
 <section>
-<h2>06｜授權費用試算</h2>
-<div class="info">
-預設 100 位使用者，僅供估算，不代表醫院實際規模。
-標準包與中階 A 的相同人數授權費相同，
-差異在啟用範圍及導入服務費。
-</div>
-<label>使用者人數
-<input id="users" type="number" min="1" max="300" value="100">
-</label>
-<label>MDE P2 月增額／人
-<input id="mde" type="number" min="0" step="0.01"
-placeholder="待正式報價">
-</label>
-<button onclick="calculate()">更新試算</button>
-<button onclick="window.print()">列印／另存 PDF</button>
-<div class="scroll">
-<table>
-<tr><th>方案</th><th>全員月費未稅</th>
-<th>全員年費未稅</th><th>年費含稅示例</th></tr>
-<tbody id="results"></tbody>
-</table>
-</div>
-<p class="muted">含稅示例僅以 5% 做算術試算，
-實際稅務處理依交易條件。
-MDE 欄位留白時不產生完整總價；輸入 0 代表零增額假設，
-不代表已取得 MDE P2 授權。</p>
+  <h2>參考資料｜授權內容與單品配置</h2>
+  <p class="muted">
+    下表完整保留使用者提供的年度報價。
+    成本試算僅使用最右欄「折扣年價（含稅）」。
+  </p>
 
-<h3>100 人混合配置示例</h3>
-<p>40 位僅需要網頁郵件的使用者採 Basic，
-60 位需桌面 Office／裝置管理／端點防護的使用者採 Premium：</p>
-<p><strong>月費＝40 × 225＋60 × 705＝NT\$51,300；<br>
-年費＝NT\$615,600，未稅。</strong></p>
-<div class="note">
-混合授權必須依實際受益使用者配置。
-不得假設只替管理員購買 Premium，
-就能讓全部 Basic 使用者合法使用 Intune、
-P1 條件式存取或商務端點防護。
-共用工作站與跨使用者裝置另做授權核對。[S2][S5]
-</div>
-</section>
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>授權名稱｜一年</th>
+          <th>主要配置用途</th>
+          <th>牌價年價<br>未稅</th>
+          <th>折扣年價<br>未稅</th>
+          <th>折扣年價<br>含稅</th>
+        </tr>
+      </thead>
+      <tbody id="referenceRows"></tbody>
+    </table>
+  </div>
 
-<section>
-<h2>07｜導入服务費預估模型</h2>
-<p>Microsoft 授權公開價不包含顧問導入工程。
-以下為本提案的人日估算假設，不是 Microsoft 官方工程價；
-預設 NT\$12,000／人日，可依供應商報價調整。</p>
-<label>服務人日單價
-<input id="rate" type="number" min="0" value="12000">
-</label>
-<button onclick="calculate()">更新工程估算</button>
-<div class="scroll">
-<table>
-<tr><th>累計導入範圍</th><th>預估人日</th>
-<th>服務費未稅</th><th>估算內容</th></tr>
-<tbody id="services"></tbody>
-</table>
-</div>
-<p class="muted">
-基礎：10–15 人日；標準：累計 18–27 人日；
-中階 A：累計 25–38 人日。
-中階 B 的 P2 轉換、SOC 串接及客製調查另估。
-累計費用不可再將前階段重複相加。
-</p>
-<p><strong>首年預算公式：</strong>
-年度授權＋累計導入服務＋移轉工具＋額外授權＋維運。
-分階段中途升級的實際首年帳單須依生效日、
-合約與升級條件重算；本表為完整 12 個月配置比較。</p>
-</section>
-
-<section>
-<h2>08｜醫院情境控制與排除項目</h2>
-<ul>
-<li><strong>醫療設備：</strong>
-未經原廠／院方確認，不直接推送安全基準、
-作業系統更新、代理程式或封鎖政策。</li>
-<li><strong>臨床不中斷：</strong>
-先行政試點再分批擴大；採核准窗口及可回復變更。
-隔離端點涉及醫療服務時，需有院方核准與緊急處理程序。</li>
-<li><strong>共用設備：</strong>
-護理站、診間、Kiosk、VDI/RDS 需個別檢查登入、
-Office 啟用及裝置授權，不以「一台一席」直接推算。</li>
-<li><strong>郵件來源：</strong>
-IMAP、既有 Exchange、Google 或 PST 的移轉能力不同；
-歷史郵件、行事曆、權限及封存是否移轉須寫入範圍。</li>
-<li><strong>不含：</strong>
-HIS/PACS 改造、Windows 基礎 OS 採購、
-伺服器防護、第三方備份、付費移轉工具、
-24×7 SOC、SIEM 費用、網路改造及法遵認證。</li>
-<li><strong>另行需求確認：</strong>
-資料保存、不可變備份、進階 DLP、
-特殊稽核／電子文件探索與資料落地；
-不得只因採用 Premium 就假設全部包含。</li>
-</ul>
-</section>
-
-<section>
-<h2>09｜採購前確認清單</h2>
-<ol>
-<li>正式院名、採購國家／地區、是否需要 Teams。</li>
-<li>總人數及 Basic／Standard／Premium 適用人數。</li>
-<li>個人端點、共用工作站、行動裝置、伺服器各自數量。</li>
-<li>既有 AD、郵件來源、信箱容量與移轉資料量。</li>
-<li>「MDE」是泛指商務 EDR，還是明確要求 MDE P2 SKU。</li>
-<li>既有防毒、醫療設備原廠限制、維護窗口與回復時間。</li>
-<li>單品官方報價、年約付款方式、升级條件及維運 SLA。</li>
-</ol>
+  <div class="note">
+    <strong>單品與套裝配置：</strong>
+    Basic 與 Standard 的進階身分、完整装置管理或端點防護，
+    依需求加購。
+    Premium 已內含 Entra ID P1、Intune Plan 1
+    及 Defender for Business，不重複採購同等單品。
+    Defender for Business 並非完整 MDE P2。
+  </div>
 </section>
 
 <footer>
-<strong>官方來源索引</strong><br>
-[S1] Microsoft 台灣：Microsoft 365 商務方案（包含 Teams）與定價。<br>
-[S2] Microsoft：Entra 定價及 Entra 授權說明。<br>
-[S3] Microsoft 台灣：Exchange Online 官方產品及定價頁。<br>
-[S4] Microsoft Learn：Change Your Endpoint Security Subscription；
-Microsoft Defender for Business 官方產品說明。<br>
-[S5] Microsoft：Defender licensing guidance。<br>
-本文件為規劃與預算草案，並非正式報價或法遵意見。
+  尚蘊醫院 Microsoft 365 導入規劃與成本試算｜
+  金額為新台幣｜依提供報價規劃，正式採購仍以有效報價與合約為準
 </footer>
+
 </main>
 
 <script>
-const money = n => "NT$" + Math.round(n).toLocaleString("zh-TW");
-function calculate(){
-  const userInput=document.getElementById("users");
-  const n=Number(userInput.value);
-  const rate=Number(document.getElementById("rate").value);
-  const raw=document.getElementById("mde").value.trim();
-  const d=raw===""?null:Number(raw);
-  if(!Number.isInteger(n)||n<1||n>300||
-     !Number.isFinite(rate)||rate<0||
-     (d!==null&&(!Number.isFinite(d)||d<0))){
-    alert("請輸入 1–300 的整數人數，以及有效的非負費用。");
-    return;
+"use strict";
+
+/* 唯一价格来源：使用者提供之年度报价。
+   不重新计算折扣、税额或月价。 */
+const PRODUCTS = {
+  basic: {
+    name:"Microsoft 365 Business Basic",
+    purpose:"基礎身分、Exchange、網頁／行動 Office",
+    list:2700, discounted:2430, tax:2552
+  },
+  standard: {
+    name:"Microsoft 365 Business Standard",
+    purpose:"基礎服務與完整桌面 Office",
+    list:5400, discounted:4860, tax:5103
+  },
+  premium: {
+    name:"Microsoft 365 Business Premium",
+    purpose:"桌面 Office、Exchange、P1、Intune、Defender for Business",
+    list:8460, discounted:7614, tax:7995
+  },
+  defender: {
+    name:"Microsoft Defender for Business",
+    purpose:"商務端點防護、EDR 與事件回應",
+    list:1158, discounted:1042, tax:1094
+  },
+  entra: {
+    name:"Microsoft Entra ID P1",
+    purpose:"進階身分與條件式存取",
+    list:2700, discounted:2430, tax:2552
+  },
+  intune: {
+    name:"Microsoft Intune Plan 1",
+    purpose:"裝置、應用程式與合規管理",
+    list:3060, discounted:2754, tax:2892
   }
-  const rows=[
-    ["基礎包｜Basic",225],
-    ["基礎包＋桌面 Office｜Standard",450],
-    ["標準包｜Premium",705],
-    ["中階 A｜Premium＋內含商務端點防護",705],
-    ["中階 B｜Premium＋適用 MDE P2 組合",
-      d===null?null:705+d]
-  ];
-  document.getElementById("results").innerHTML=rows.map(([name,p])=>{
-    if(p===null)return `<tr><td>${name}</td>
-    <td colspan="3">待 MDE P2 正式報價；Premium 基座年費
-    ${money(n*705*12)}，未包含 P2 增額。</td></tr>`;
-    const month=n*p,year=month*12;
-    return `<tr><td>${name}</td><td>${money(month)}</td>
-    <td>${money(year)}</td><td>${money(year*1.05)}</td></tr>`;
-  }).join("");
-  document.getElementById("services").innerHTML=[
-    ["基礎包",10,15,"含前置盤點、身分與郵件導入"],
-    ["標準包",18,27,"含基礎＋Intune／條件式存取"],
-    ["中階 A",25,38,"含標準＋商務端點防護與演練"]
-  ].map(([name,a,b,desc])=>`<tr><td>${name}</td>
-  <td>${a}–${b}</td><td>${money(a*rate)}–${money(b*rate)}</td>
-  <td>${desc}</td></tr>`).join("");
+};
+
+const PLANS = [
+  { id:"basic", name:"Business Basic",
+    items:["basic"], level:1 },
+  { id:"standard", name:"Business Standard",
+    items:["standard"], level:1 },
+  { id:"premium", name:"Business Premium",
+    items:["premium"], level:3 },
+  { id:"basic-p1", name:"Basic＋Entra ID P1",
+    items:["basic","entra"], level:1 },
+  { id:"basic-intune", name:"Basic＋Intune（未含 P1）",
+    items:["basic","intune"], level:1 },
+  { id:"basic-managed", name:"Basic＋P1＋Intune",
+    items:["basic","entra","intune"], level:2 },
+  { id:"standard-managed", name:"Standard＋P1＋Intune",
+    items:["standard","entra","intune"], level:2 },
+  { id:"basic-defender", name:"Basic＋Defender for Business",
+    items:["basic","defender"], level:1 },
+  { id:"standard-defender", name:"Standard＋Defender for Business",
+    items:["standard","defender"], level:1 },
+  { id:"basic-full", name:"Basic＋P1＋Intune＋Defender",
+    items:["basic","entra","intune","defender"], level:3 },
+  { id:"standard-full", name:"Standard＋P1＋Intune＋Defender",
+    items:["standard","entra","intune","defender"], level:3 },
+  { id:"defender-only", name:"僅 Defender for Business",
+    items:["defender"], level:0 },
+  { id:"entra-only", name:"僅 Entra ID P1",
+    items:["entra"], level:0 },
+  { id:"intune-only", name:"僅 Intune Plan 1",
+    items:["intune"], level:0 }
+];
+
+const STAGES = [
+  {value:"0", name:"單品／自訂範圍"},
+  {value:"1", name:"基礎包"},
+  {value:"2", name:"標準包"},
+  {value:"3", name:"中階包"}
+];
+
+const money = value =>
+  "NT$" + value.toLocaleString("zh-TW", {
+    maximumFractionDigits:0
+  });
+
+const planPrice = plan =>
+  plan.items.reduce((sum,key) => sum + PRODUCTS[key].tax,0);
+
+function addRole(
+  name="新增角色",
+  count=0,
+  planId="basic",
+  stage="1"
+) {
+  const tr=document.createElement("tr");
+
+  const roleCell=document.createElement("td");
+  const role=document.createElement("input");
+  role.type="text";
+  role.className="role-name";
+  role.value=name;
+  role.setAttribute("aria-label","角色或部門");
+  roleCell.appendChild(role);
+
+  const countCell=document.createElement("td");
+  const qty=document.createElement("input");
+  qty.type="number";
+  qty.min="0";
+  qty.step="1";
+  qty.value=count;
+  qty.className="role-count";
+  qty.setAttribute("aria-label","角色人數");
+  countCell.appendChild(qty);
+
+  const planCell=document.createElement("td");
+  const select=document.createElement("select");
+  select.className="role-plan";
+  select.setAttribute("aria-label","授權組合");
+
+  PLANS.forEach(plan => {
+    const option=document.createElement("option");
+    option.value=plan.id;
+    option.textContent=plan.name;
+    select.appendChild(option);
+  });
+
+  select.value=planId;
+  planCell.appendChild(select);
+
+  const stageCell=document.createElement("td");
+  const stageSelect=document.createElement("select");
+  stageSelect.className="role-stage";
+  stageSelect.setAttribute("aria-label","導入階段");
+
+  STAGES.forEach(item => {
+    const option=document.createElement("option");
+    option.value=item.value;
+    option.textContent=item.name;
+    stageSelect.appendChild(option);
+  });
+
+  stageSelect.value=stage;
+  stageCell.appendChild(stageSelect);
+
+  const unitCell=document.createElement("td");
+  unitCell.className="money unit-price";
+
+  const subtotalCell=document.createElement("td");
+  subtotalCell.className="money role-subtotal";
+
+  const actionCell=document.createElement("td");
+  actionCell.className="no-print";
+  const remove=document.createElement("button");
+  remove.type="button";
+  remove.className="danger";
+  remove.textContent="刪除";
+  remove.addEventListener("click",() => {
+    tr.remove();
+    calculate();
+  });
+  actionCell.appendChild(remove);
+
+  [
+    roleCell,countCell,planCell,stageCell,
+    unitCell,subtotalCell,actionCell
+  ].forEach(cell => tr.appendChild(cell));
+
+  tr.addEventListener("input",calculate);
+  tr.addEventListener("change",calculate);
+  document.getElementById("roleRows").appendChild(tr);
+  calculate();
 }
-calculate();
+
+function calculate() {
+  let users=0;
+  let licenses=0;
+  let invalid=false;
+  const warnings=[];
+
+  document.querySelectorAll("#roleRows tr").forEach((tr,index) => {
+    const raw=tr.querySelector(".role-count").value;
+    const count=Number(raw);
+    const valid=raw!=="" && Number.isInteger(count) && count>=0;
+    const plan=PLANS.find(
+      p => p.id===tr.querySelector(".role-plan").value
+    );
+    const stage=Number(tr.querySelector(".role-stage").value);
+    const name=tr.querySelector(".role-name").value.trim()
+      || `角色 ${index+1}`;
+    const price=planPrice(plan);
+
+    tr.querySelector(".unit-price").textContent=money(price);
+
+    if(!valid) {
+      invalid=true;
+      tr.querySelector(".role-subtotal").textContent="人數無效";
+      warnings.push(`${name}：請輸入零或正整數人數。`);
+      return;
+    }
+
+    const subtotal=count*price;
+    users+=count;
+    licenses+=subtotal;
+    tr.querySelector(".role-subtotal").textContent=money(subtotal);
+
+    if(count>0 && stage>plan.level) {
+      warnings.push(
+        `${name}：所選授權組合不足以涵蓋完整的`+
+        `${STAGES.find(s=>Number(s.value)===stage).name}；`+
+        `請改選合適授權，或將階段改為單品／自訂範圍。`
+      );
+    }
+  });
+
+  if(users>300) {
+    warnings.push(
+      "合計超過 300 人：請另確認 Business 適用範圍、"+
+      "採購限制與企業版配置。"
+    );
+  }
+
+  let services=0;
+  const pending=[];
+
+  document.querySelectorAll(".service-fee").forEach(input => {
+    const raw=input.value.trim();
+
+    if(raw==="") {
+      pending.push(input.dataset.name);
+      return;
+    }
+
+    const amount=Number(raw);
+    if(!Number.isFinite(amount) || amount<0 ||
+       !Number.isInteger(amount)) {
+      invalid=true;
+      warnings.push(
+        `${input.dataset.name}：服務費請輸入零或正整數。`
+      );
+      return;
+    }
+
+    services+=amount;
+  });
+
+  const validation=document.getElementById("validation");
+  validation.replaceChildren();
+  warnings.forEach(text => {
+    const line=document.createElement("p");
+    line.textContent="提醒："+text;
+    validation.appendChild(line);
+  });
+
+  document.getElementById("licenseTotal").textContent=
+    invalid?"請修正輸入":money(licenses);
+  document.getElementById("serviceTotal").textContent=
+    invalid?"請修正輸入":money(services);
+  document.getElementById("workTotal").textContent=
+    invalid?"請修正輸入":money(services);
+  document.getElementById("grandTotal").textContent=
+    invalid?"請修正輸入":money(licenses+services);
+  document.getElementById("headcount").textContent=
+    `使用者總數：${users.toLocaleString("zh-TW")} 人`;
+
+  document.getElementById("serviceStatus").textContent=
+    pending.length
+      ? `待報價階段：${pending.join("、")}。`+
+        "目前僅加總已填費用，尚非完整首年報價。"
+      : "所有階段服務費均已填入；填 0 的階段按不另收費計算。";
+
+  document.getElementById("grandLabel").textContent=
+    pending.length
+      ? "首年已知預算小計｜含稅"
+      : "首年預估總金額｜含稅";
+
+  document.getElementById("grandNote").textContent=
+    invalid
+      ? "存在無效輸入，請修正後再使用試算。"
+      : pending.length
+        ? "待報價服務費尚未納入。"
+        : warnings.length
+          ? "金額已加總；請先處理上方配置提醒。"
+          : "年度授權＋一次性導入服務費。";
+}
+
+function renderReference() {
+  const tbody=document.getElementById("referenceRows");
+  Object.values(PRODUCTS).forEach(product => {
+    const tr=document.createElement("tr");
+    [
+      product.name+"｜一年",
+      product.purpose,
+      money(product.list),
+      money(product.discounted),
+      money(product.tax)
+    ].forEach((text,index) => {
+      const td=document.createElement("td");
+      td.textContent=text;
+      if(index>=2) td.className="money";
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+
+document.querySelectorAll(".service-fee").forEach(input => {
+  input.addEventListener("input",calculate);
+});
+
+renderReference();
+addRole("行政／一般郵件使用者",40,"basic","1");
+addRole("醫護／受控裝置使用者",50,"premium","2");
+addRole("資訊／端點防護使用者",10,"premium","3");
 </script>
+
 </body>
 </html>
